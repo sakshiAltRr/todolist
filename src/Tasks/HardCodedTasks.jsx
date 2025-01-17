@@ -35,7 +35,7 @@ function HardCodedTasks() {
   };
 
   return (
-    <div>
+    <div >
       {tasks.map((task, index) => (
         <li key={index}>
           {editingIndex === index ? (

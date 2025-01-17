@@ -4,7 +4,7 @@ import React from "react";
 import {useState} from 'react'
 import HardCodedTasks from "./Tasks/HardCodedTasks";
 import "./App.css"
-import "./index.css"
+ import "./index.css"
 
 function App() {
   const [todos,setTodos] = useState([])
@@ -62,23 +62,22 @@ function App() {
 
 
     <div >
-      <div className="d1">
-    <h1>Todo List</h1>
+      <div className="d1 group hover:bg-purple-100 h-56 ">
+    <h1 className="font-serif 20px ml-6">Todo List</h1>
         <form onSubmit={handleSubmit}>
           <input type="text" value={inputValue} onChange={handleChange} 
           style={{width:"300px" ,height:"28px",borderRadius:"10px",border:"1px solid lightgrey"}}
-          
+          className="ml-6"
           />
-          <button
-            style={{ width: "30px", height: "30px", marginLeft: "4px" ,border:"1px solid lightgrey",borderRadius:"20%"}}
-            type="submit"
-          >
+          <button className="mb-3 group-hover:border-blue-950 transition-all duration-1000 w-8 h-7 ml-1.5 border border-lightgray rounded-lg hover:bg-violet-200"
+        type="submit">
             <i className="fa-solid fa-plus"></i>
           </button>
-          <hr/>
+          
+          <hr className="group-hover:border-blue-950 transition-all duration-1000"/>
           <br/>
         </form>
-        <ul>
+        <ul className="ml-6">
           {todos.map((todo, index) => (
             <li key={index}>
               {editingIndex === index ? (
@@ -109,7 +108,7 @@ function App() {
             </li>
           ))}
         
-          <HardCodedTasks/>
+          <HardCodedTasks />
         </ul>
         </div>
       </div>

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import HardCodedTasks from "./Tasks/HardCodedTasks";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; 
 import "./App.css";
 import "./index.css";
 
@@ -17,14 +19,19 @@ function App() {
     e.preventDefault();
     if (inputValue.trim() !== "") {
       setTodos([...todos, inputValue]);
+      setInputValue("");
+      toast.success("Task added successfully!");
     }
-    setInputValue("");
+    else{
+      toast.error("Please enter a task.");
   }
+}
 
   function handleDelete(index) {
     const newTodos = [...todos];
     newTodos.splice(index, 1);
     setTodos(newTodos);
+    toast.info("Task deleted.");
   }
 
   const handleEditClick = (index) => {
@@ -42,6 +49,7 @@ function App() {
     setTodos(updatedTodos);
     setEditingIndex(null);
     setEditValue("");
+    toast.success("Task updated successfully!");
   };
 
   return (
@@ -60,7 +68,8 @@ function App() {
             <button
   type="submit"
   className={`w-10 h-10 ml-2 flex items-center justify-center border border-gray-300 rounded-lg transition-all duration-300 ${inputValue.trim() ? 'bg-white hover:bg-violet-100' : 'bg-purple-100 cursor-not-allowed'}`}
-  disabled={!inputValue.trim()} // Disable if inputValue is empty
+  //  disabled={!inputValue.trim()} // Disable if inputValue is empty
+  
 >
   <i className="fa-solid fa-plus"></i>
 </button>
@@ -112,6 +121,11 @@ function App() {
           <HardCodedTasks />
         </div>
       </div>
+      <ToastContainer
+      position="bottom-center"
+      hideProgressBar={true} 
+      autoclose={100}
+      newestOnTop={false} />
     </>
   );
 }

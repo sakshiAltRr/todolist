@@ -35,36 +35,48 @@ function HardCodedTasks() {
   };
 
   return (
-    <div >
-      {tasks.map((task, index) => (
-        <li key={index}>
-          {editingIndex === index ? (
-            <>
-              <input
-                type="text"
-                value={editedValue}
-                onChange={handleEditChange}
-              />
-              <button onClick={() => handleEditSave(index)}>Save</button>
-            </>
-          ) : (
-            <>
-              {task}
-              <i
-                className="fa-solid fa-pen-to-square"
-                style={{ marginLeft: "8px" }}
-                onClick={() => handleEditClick(index)}
-              ></i>
-              <button
-                style={{ marginLeft: "10px" }}
-                onClick={() => handleDelete(index)}
-              >
-                <i className="fa-solid fa-trash"></i>
-              </button>
-            </>
-          )}
-        </li>
-      ))}
+    <div className="mt-4">
+      <ul className="space-y-4">
+        {tasks.map((task, index) => (
+          <li
+            key={index}
+            className="flex items-center justify-between bg-purple-100 p-3 rounded-lg shadow-sm"
+          >
+            {editingIndex === index ? (
+              <div className="flex items-center space-x-3">
+                <input
+                  type="text"
+                  value={editedValue}
+                  onChange={handleEditChange}
+                  className="border border-gray-300 rounded-lg p-2 text-gray-700 w-full sm:w-72"
+                />
+                <button
+                  onClick={() => handleEditSave(index)}
+                  className="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600"
+                >
+                  Save
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center justify-between w-full">
+                <span className="text-gray-700">{task}</span>
+                <div className="flex items-center space-x-2">
+                  <i
+                    className="fa-solid fa-pen-to-square text-blue-500 cursor-pointer hover:text-blue-700"
+                    onClick={() => handleEditClick(index)}
+                  ></i>
+                  <button
+                    onClick={() => handleDelete(index)}
+                    className="text-red-500 hover:text-red-700"
+                  >
+                    <i className="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

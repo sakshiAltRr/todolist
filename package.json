@@ -1,14 +1,14 @@
 { 
-  "homepage":"https://sakshiAltRr.github.io/To-DoList",
+  "homepage":"https://sakshiAltRr.github.io/todolist",
   "name": "to-dolist",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy":"npm run build",
-    "deploy":"gh-pages -d build",
+   "build": "vite build",
+    "deploy":"gh-pages -d dist",
     "dev": "vite",
-    "build": "vite build",
+    
     "lint": "eslint .",
     "preview": "vite preview"
   },

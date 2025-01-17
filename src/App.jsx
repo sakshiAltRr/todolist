@@ -1,34 +1,30 @@
-import React from "react";
-// import Registeration from './Registeration/Registeration';
-// import Login from './Login/Login'
-import {useState} from 'react'
+import React, { useState } from "react";
 import HardCodedTasks from "./Tasks/HardCodedTasks";
-import "./App.css"
- import "./index.css"
+import "./App.css";
+import "./index.css";
 
 function App() {
-  const [todos,setTodos] = useState([])
-  const [inputValue,setInputValue] = useState('')
- const [editingIndex,setEditingIndex]=useState(null);
- const[editValue,setEditValue]=useState("");
+  const [todos, setTodos] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [editValue, setEditValue] = useState("");
 
-
-  function handleChange(event){
-    setInputValue(event.target.value)
+  function handleChange(event) {
+    setInputValue(event.target.value);
   }
 
-  function handleSubmit(e){
-    e.preventDefault() 
-    if(!inputValue==''){
-    setTodos([...todos, inputValue])}
-    setInputValue('')
-   
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (inputValue.trim() !== "") {
+      setTodos([...todos, inputValue]);
+    }
+    setInputValue("");
   }
 
-  function handleDelete(index){
-    const newTodos = [...todos]
-    newTodos.splice(index, 1)
-    setTodos(newTodos)
+  function handleDelete(index) {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
   }
 
   const handleEditClick = (index) => {
@@ -36,80 +32,81 @@ function App() {
     setEditValue(todos[index]);
   };
 
-  const handleEditChange=(event)=>{
+  const handleEditChange = (event) => {
     setEditValue(event.target.value);
-  }
+  };
 
-
-  const handleEditSave=(index)=>{
-    const updatedTodos=[...todos];
-    updatedTodos[index]=editValue;
+  const handleEditSave = (index) => {
+    const updatedTodos = [...todos];
+    updatedTodos[index] = editValue;
     setTodos(updatedTodos);
     setEditingIndex(null);
     setEditValue("");
-  }
-
-
-
+  };
 
   return (
     <>
-
-{/*     
-<h3>Welcome To ToDo List App</h3>
-    <Registeration/>
-    <p>Already a Member?</p> */}
-
-
-    <div >
-      <div className="d1 group hover:bg-purple-100 h-56 ">
-    <h1 className="font-serif 20px ml-6">Todo List</h1>
-        <form onSubmit={handleSubmit}>
-          <input type="text" value={inputValue} onChange={handleChange} 
-          style={{width:"300px" ,height:"28px",borderRadius:"10px",border:"1px solid lightgrey"}}
-          className="ml-6"
-          />
-          <button className="mb-3 group-hover:border-blue-950 transition-all duration-1000 w-8 h-7 ml-1.5 border border-lightgray rounded-lg hover:bg-violet-200"
-        type="submit">
-            <i className="fa-solid fa-plus"></i>
-          </button>
-          
-          <hr className="group-hover:border-blue-950 transition-all duration-1000"/>
-          <br/>
-        </form>
-        <ul className="ml-6">
-          {todos.map((todo, index) => (
-            <li key={index}>
-              {editingIndex === index ? (
-                <>
-                  <input
-                    type="text"
-                    value={editValue}
-                    onChange={handleEditChange}
-                  />
-                  <button onClick={() => handleEditSave(index)} style={{marginLeft:"6px"}}>Save</button>
-                </>
-              ) : (
-                <>
-                  {todo}
-                  <i
-                    className="fa-solid fa-pen-to-square"
-                    style={{ marginLeft: "8px" }}
-                    onClick={() => handleEditClick(index)}
-                  ></i>
-                  <button
-                    onClick={() => handleDelete(index)}
-                    style={{ marginLeft: "8px"}}
-                  >
-                    <i className="fa-solid fa-trash"></i>
-                  </button>
-                </>
-              )}
-            </li>
-          ))}
-        
+      <div className="flex justify-center items-center h-screen">
+        <div className="w-full sm:w-11/12 md:w-2/3 lg:w-1/2 mt-10 p-6 rounded-lg shadow-xl bg-purple-100 bg-opacity-25">
+          <h1 className="font-sans text-xl mb-4 ">Todo List</h1>
+          <form onSubmit={handleSubmit} className="flex items-center mb-4">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={handleChange}
+              className="w-full sm:w-72 h-10 rounded-lg border border-gray-300 p-2 text-gray-700 focus:ring"
+              placeholder="Add a new task"
+            />
+            <button
+              type="submit"
+              className="w-10 h-10 ml-2 flex items-center justify-center border border-gray-300 rounded-lg bg-white hover:bg-violet-100 transition-all duration-300"
+            >
+              <i className="fa-solid fa-plus"></i>
+            </button>
+          </form>
+          <hr className="border-purple-300 mb-4" />
+          <ul className="space-y-3">
+            {todos.map((todo, index) => (
+              <li
+                key={index}
+                className="flex items-center justify-between bg-purple-100 p-3 rounded-lg shadow-sm"
+              >
+                {editingIndex === index ? (
+                  <div className="flex items-center space-x-3">
+                    <input
+                      type="text"
+                      value={editValue}
+                      onChange={handleEditChange}
+                      className="border border-gray-300 rounded-lg p-2 text-gray-700 focus:ring focus:ring-purple-300"
+                    />
+                    <button
+                      onClick={() => handleEditSave(index)}
+                      className="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600"
+                    >
+                      Save
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-between w-full">
+                    <span className="text-gray-700">{todo}</span>
+                    <div className="flex items-center space-x-2">
+                      <i
+                        className="fa-solid fa-pen-to-square text-blue-500 cursor-pointer hover:text-blue-700"
+                        onClick={() => handleEditClick(index)}
+                      ></i>
+                      <button
+                        onClick={() => handleDelete(index)}
+                        className="text-red-500 hover:text-red-700"
+                      >
+                        <i className="fa-solid fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
           <HardCodedTasks />
-        </ul>
         </div>
       </div>
     </>

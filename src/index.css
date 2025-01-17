@@ -1,11 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* 
-body{
-    background-image: url("https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yNDYta2F0aWUtMTAuanBn.jpg");
-  
-    
 
-} */
+body {
+    background-image: url("https://wallpapers.com/images/hd/pastel-gradient-background-3840-x-2160-yyj5vp6chp9is7en.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Ensures the body takes the full viewport height */
+    margin: 0; /* Removes default margin for body */
+  }
+  
 

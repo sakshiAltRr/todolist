@@ -58,11 +58,14 @@ function App() {
               placeholder="Add a new task"
             />
             <button
-              type="submit"
-              className="w-10 h-10 ml-2 flex items-center justify-center border border-gray-300 rounded-lg bg-white hover:bg-violet-100 transition-all duration-300"
-            >
-              <i className="fa-solid fa-plus"></i>
-            </button>
+  type="submit"
+  className={`w-10 h-10 ml-2 flex items-center justify-center border border-gray-300 rounded-lg transition-all duration-300 ${inputValue.trim() ? 'bg-white hover:bg-violet-100' : 'bg-purple-100 cursor-not-allowed'}`}
+  disabled={!inputValue.trim()} // Disable if inputValue is empty
+>
+  <i className="fa-solid fa-plus"></i>
+</button>
+
+
           </form>
           <hr className="border-purple-300 mb-4" />
           <ul className="space-y-3">

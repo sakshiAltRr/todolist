@@ -10,7 +10,7 @@ function Home() {
     Welcome
     <Link to="/TodoList">
    
-    <button className="bg-purple-200 rounded-lg mt-10 px-4 py-2 hover:bg-purple-300">
+    <button className="bg-purple-200 rounded-lg mt-10 px-4 py-2 hover:bg-pink-100">
       ToDo Page
     </button>
   </Link>
